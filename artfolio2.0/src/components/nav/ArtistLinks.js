@@ -6,7 +6,6 @@ export default class ArtistLinks extends Component {
     return (
         <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><Link to="/createpost">Create Post</ Link></li>
-            <li><Link to="/">Sign Out</ Link></li>
         </ul>
     )
   }

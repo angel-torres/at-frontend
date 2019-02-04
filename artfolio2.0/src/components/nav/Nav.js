@@ -2,18 +2,28 @@ import React, { Component } from 'react'
 import SignedOutLinks from './SignedOutLinks';
 import UserLinks from './UserLinks';
 import ArtistLinks from './ArtistLinks';
+import { connect } from "react-redux";
+import {  Link } from 'react-router-dom'
 
-export default class Nav extends Component {
+class Nav extends Component {
   render() {
+    console.log(this.props)
     return (
          <nav>
             <div className="nav-wrapper #00695c teal darken-3">
-            <a href="#" className="brand-logo left">ArtFolio2.0</a>
-            <SignedOutLinks />
-            <UserLinks />
-            <ArtistLinks />
+            <Link to="/" className="brand-logo left">ArtFolio2.0</Link>
+            {this.props.signedIn ? <UserLinks artist={this.props.artist} /> : <SignedOutLinks />}
             </div>
         </nav>
     )
   }
 }
+
+const mapStateToProps = state => (
+    {
+        signedIn: state.signedIn,
+        artist: state.artist
+    }
+)
+
+export default connect(mapStateToProps, {})(Nav)
