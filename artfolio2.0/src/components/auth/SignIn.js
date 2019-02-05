@@ -5,13 +5,14 @@ import { signIn } from '../../actions'
 class SignIn extends Component {
 
   signIn = e => {
+    this.props.history.push("/user/0")
     e.preventDefault();
     this.props.signIn()
   }
 
   render() {
     return (
-      <form onSubmit={this.signIn} className="container">
+      <form onSubmit={this.signIn} className="container card" style={{margin:"40px auto", padding:"60px"}}>
         <div className="row">
             <div className="input-field col s12">
             <input id="password" type="password" className="validate"/>

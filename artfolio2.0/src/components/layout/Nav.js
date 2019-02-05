@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import SignedOutLinks from './SignedOutLinks';
 import UserLinks from './UserLinks';
-import ArtistLinks from './ArtistLinks';
 import { connect } from "react-redux";
 import {  Link } from 'react-router-dom'
 
 class Nav extends Component {
   render() {
-    console.log(this.props)
     return (
          <nav>
             <div className="nav-wrapper #00695c teal darken-3">
