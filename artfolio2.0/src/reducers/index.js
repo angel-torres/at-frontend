@@ -1,5 +1,4 @@
-import { SIGN_IN, CREATE_ACCOUNT } from '../actions'
-import CreateAccount from '../components/auth/CreateAccount';
+import { SIGN_IN, CREATE_ACCOUNT, CREATE_POST, SIGN_OUT } from '../actions'
 
 const initialState = {
     posts: [{
@@ -25,12 +24,12 @@ const initialState = {
         id: 2,
     }],
     signedIn: false,
-    user: {
-        firstName: 'angel',  
-        lastName: 'torres',
-        id: 'integer',
-        password: 'password', // optional up to yall
-        email: 'string@mail.com' // also optional.
+    user:  {
+        firstName: '',  
+        lastName: '',
+        id: '',
+        password: '', // optional up to yall
+        email: '' // also optional.
     }
 }
 
@@ -46,6 +45,16 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 signedIn: true,
                 user: action.payload
+            }
+        case CREATE_POST:
+            return {
+                ...state,
+                posts: [...state.posts, action.payload]
+            }
+        case SIGN_OUT:
+            return {
+                ...state,
+                signedIn: false,
             }
         default:
             return state

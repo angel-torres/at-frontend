@@ -8,7 +8,7 @@ class CreateAccount extends Component {
     state = {
         firstName: '',  
         lastName: '',
-        id: '0',
+        id: Date.now(),
         password: '', // optional up to yall
         email: '' // also optional.
     }
