@@ -25,7 +25,6 @@ class CreatePost extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="row container card" style={{margin:"40px auto", padding:"60px"}}>
                 <form onSubmit={this.createPost} className="col s12">

@@ -10,8 +10,8 @@ class SignIn extends Component {
   }
 
   signIn = e => {
-    this.props.history.push("/user/0")
     e.preventDefault();
+    this.props.history.push("/user/0")
     this.props.signIn(this.state);
   }
 

@@ -8,6 +8,7 @@ import CreateAccount from './components/auth/CreateAccount';
 import Posts from './components/posts/Posts';
 import CreatePost from './components/artist/CreatePost';
 import Landing from './components/layout/Landing';
+import UpdatePost from './components/artist/UpdatePost'
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
         <Route path="/createaccount" component={CreateAccount}/>
         <Route path="/user/:id" component={Posts}/>
         <Route path="/createpost" component={CreatePost}/>
+        <Route path="/updatepost" component={UpdatePost}/>
       </div>
     );
   }
