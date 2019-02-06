@@ -11,10 +11,10 @@ class UserLinks extends Component {
 
   render() {
     return (
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><Link to="/user/0">Dashboard</ Link></li>        
-            <li><Link to="/createpost">Create Post</ Link></li>
-            <li onClick={this.signOut}><Link to="/">Sign Out</ Link></li>
+        <ul id="nav-mobile" className="signed-in-nav">
+            <li className="links"><Link to="/user/0">Dashboard</ Link></li>        
+            <li className="links"><Link to="/createpost">Create Post</ Link></li>
+            <li onClick={this.signOut} className="links"><Link to="/">Sign Out</ Link></li>
         </ul>
     )
   }
