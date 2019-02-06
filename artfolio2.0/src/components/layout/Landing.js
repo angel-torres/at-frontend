@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class Landing extends Component {
+class Landing extends Component {
+
+
   render() {
+    if (this.props.token) {
+      this.props.history.push(`/user/${this.props.token}`);
+    }
     return (
       <div className="container card" style={{margin:"40px auto", padding:"60px"}}>
         <h1>Welcome!</h1>
@@ -13,3 +19,12 @@ export default class Landing extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    username: state.username,
+    token: state.token
+  }
+}
+
+export default connect( mapStateToProps, {} )(Landing)

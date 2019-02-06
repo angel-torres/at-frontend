@@ -11,7 +11,7 @@ class SignIn extends Component {
 
   signIn = e => {
     e.preventDefault();
-    localStorage.token ? this.props.history.push(`/user/${this.state.username}`) : this.props.history.push(`/`)
+    this.props.history.push(`/`)
     this.props.signIn(this.state);
   }
 

@@ -4,17 +4,14 @@ import { connect } from 'react-redux';
 
 class CreatePost extends Component {
     state = {
-        img: "https://loremflickr.com/320/240",
-        datePosted: Date.now(),
-        title: "",
-        author: this.props.user.firstName,
-        description: "",
-        id: 0,
+       postName: '',
+       imageUrl: '',
+       description: ''
     }
 
     createPost = e => {
         e.preventDefault();
-        this.props.history.push('/user/:id')
+        this.props.history.push(`/user/${this.props.user.id}`)
         this.props.createPost(this.state);
     }
 
@@ -30,8 +27,14 @@ class CreatePost extends Component {
                 <form onSubmit={this.createPost} className="col s12">
                     <div className="row">
                         <div className="input-field col s12">
-                        <textarea onChange={this.handleChanges} value={this.state.title} name="title" className="materialize-textarea"></textarea>
-                        <label>Title</label>
+                        <textarea onChange={this.handleChanges} value={this.state.postName} name="postName" className="materialize-textarea"></textarea>
+                        <label>Post Name</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <textarea onChange={this.handleChanges} value={this.state.imageUrl} name="imageUrl" className="materialize-textarea"></textarea>
+                            <label>Image Url</label>
                         </div>
                     </div>
                     <div className="row">
@@ -40,15 +43,7 @@ class CreatePost extends Component {
                             <label>Desctiption</label>
                         </div>
                     </div>
-                    <div className="file-field input-field">
-                    <div className="btn">
-                        <span>Add Image</span>
-                        <input type="file"/>
-                    </div>
-                    <div className="file-path-wrapper">
-                        <input className="file-path validate" type="text"/>
-                    </div>
-                    </div>
+                  
                     <button className="waves-effect waves-light btn #00695c teal darken-3">Create Post</button>
                 </form>
             </div>

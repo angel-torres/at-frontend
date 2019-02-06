@@ -21,7 +21,7 @@ class CreateAccount extends Component {
     }
     createAccount = e => {
         e.preventDefault();
-        this.props.history.push("/user/0")
+        this.props.history.push("/")
         this.props.createAccount(this.state);
     }
 

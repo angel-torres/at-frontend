@@ -6,6 +6,9 @@ export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
 export const CREATE_POST = "CREATE_POST";
 export const UPDATING = "UPDATING";
 export const UPDATE_POST = "UPDATE_POST";
+export const GOT_POSTS = "GOT_POSTS";
+
+// /api/users/posts/:id
 
 export const signIn = signinInfo => dispatch => {
     axios
@@ -18,6 +21,13 @@ export const signIn = signinInfo => dispatch => {
      .catch(err => console.log(err))
 }
 
+export const getPosts = (id) => dispatch => {
+    axios
+    .get(`https://backend-art.herokuapp.com/api/posts`)
+    .then(res => dispatch({type: GOT_POSTS, payload: res.data}))
+    .catch(err => console.log(err))
+}
+
 export const signOut = () => dispatch => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -27,14 +37,13 @@ export const signOut = () => dispatch => {
 export const createAccount = accountInfo => dispatch => {
     axios
     .post('https://backend-art.herokuapp.com/api/register', accountInfo)
-    .then(res => console.log(res))
+    .then(res => (dispatch({type: CREATE_ACCOUNT})))
 }
 
-export const createPost = post => {
-    return {
-        type: CREATE_POST,
-        payload: post
-    }
+export const createPost = post => dispatch => {
+    axios
+    .post('https://backend-art.herokuapp.com/api/posts', post)
+    .then(res => console.log(res))
 }
 
 export const updating = formId => {

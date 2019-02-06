@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { updating } from '../../actions'
+import { updating, getPosts } from '../../actions'
 import Post from './Post';
 
 class Posts extends Component {
@@ -12,8 +12,14 @@ class Posts extends Component {
     this.props.updating(formId);
   }
 
+  componentDidMount() {
+    this.props.getPosts(this.props.user.id)
+  }
+
   render() {
-    console.log(this.props)
+    if (this.props.signedIn === false) {
+      this.props.history.push("/");
+    }
     return (
       <div className="container">
         <h2>Hello {this.props.user.fullName}</h2>
@@ -28,8 +34,9 @@ class Posts extends Component {
 const mapPropsToState = state => {
     return {
         posts: state.posts,
-        user: state.user
+        user: state.user,
+        signedIn: state.signedIn
     }
 }
 
-export default connect(mapPropsToState, { updating })(Posts)
+export default connect(mapPropsToState, { updating, getPosts })(Posts)
