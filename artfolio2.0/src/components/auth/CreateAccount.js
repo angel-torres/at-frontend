@@ -5,13 +5,14 @@ import { createAccount } from '../../actions';
 
 
 class CreateAccount extends Component {
-    state = {
-        firstName: '',  
-        lastName: '',
-        id: Date.now(),
-        password: '', // optional up to yall
-        email: '' // also optional.
-    }
+    state =   {
+        username: '',
+        password: '',
+        fullName: '',
+        email: '',
+        userImgUrl: ''
+      }
+    
 
     handleChanges = e => {
         this.setState({
@@ -30,12 +31,18 @@ class CreateAccount extends Component {
                 <form onSubmit={this.createAccount} className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                        <input onChange={this.handleChanges} value={this.state.firstName} name="firstName" type="text" className="validate"/>
-                        <label>First Name</label>
+                            <input onChange={this.handleChanges} value={this.state.username} name="username" type="text" className="validate"/>
+                            <label>Username</label>
                         </div>
                         <div className="input-field col s6">
-                        <input onChange={this.handleChanges} value={this.state.lastName} name="lastName" type="text" className="validate"/>
-                        <label>Last Name</label>
+                            <input onChange={this.handleChanges} value={this.state.password} name="password" type="password" className="validate"/>
+                            <label>Password</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12">
+                        <input onChange={this.handleChanges} value={this.state.fullName} name="fullName" type="text" className="validate"/>
+                        <label>Full Name</label>
                         </div>
                     </div>
                     <div className="row">
@@ -46,11 +53,11 @@ class CreateAccount extends Component {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                        <input onChange={this.handleChanges} value={this.state.password} name="password" type="password" className="validate"/>
-                        <label>Password</label>
+                        <input onChange={this.handleChanges} value={this.state.userImgUrl} name="userImgUrl" type="text" className="validate"/>
+                        <label>User Image Url</label>
                         </div>
                     </div>
-                    <button class="waves-effect waves-light btn #00695c teal darken-3">Create Account</button>
+                    <button className="waves-effect waves-light btn #00695c teal darken-3">Create Account</button>
                 </form>
         </div>
         )
