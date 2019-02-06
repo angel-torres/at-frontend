@@ -11,10 +11,9 @@ export const signIn = signinInfo => dispatch => {
     axios
     .post('https://backend-art.herokuapp.com/api/login', signinInfo)
     .then(res => { 
-        localStorage.setItem("token", res.data.token)
-        localStorage.setItem("username", res.data.username)
-        console.log(localStorage)
-        dispatch({type: SIGN_IN, payload: res})
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("username", res.data.username);
+        dispatch({type: SIGN_IN, payload: res});
      })
      .catch(err => console.log(err))
 }

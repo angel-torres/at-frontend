@@ -10,6 +10,7 @@ import { reducer } from './reducers';
 import * as serviceWorker from './serviceWorker';
 
 
+
 const store = createStore(reducer, applyMiddleware(thunk))
 const AppWithRouter = withRouter(App)
 

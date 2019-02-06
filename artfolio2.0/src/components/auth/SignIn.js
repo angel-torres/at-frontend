@@ -11,9 +11,10 @@ class SignIn extends Component {
 
   signIn = e => {
     e.preventDefault();
-    this.props.history.push(`/user/${this.state.username}`)
+    localStorage.token ? this.props.history.push(`/user/${this.state.username}`) : this.props.history.push(`/`)
     this.props.signIn(this.state);
   }
+
 
   handleChanges = e => {
     this.setState({
