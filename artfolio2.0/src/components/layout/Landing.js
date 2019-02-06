@@ -7,7 +7,7 @@ class Landing extends Component {
 
   render() {
     if (this.props.token) {
-      this.props.history.push(`/user/${this.props.token}`);
+      this.props.history.push(`/user/${this.props.username}`);
     }
     return (
       <div className="container card" style={{margin:"40px auto", padding:"60px"}}>

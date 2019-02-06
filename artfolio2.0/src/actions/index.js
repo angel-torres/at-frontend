@@ -21,7 +21,7 @@ export const signIn = signinInfo => dispatch => {
      .catch(err => console.log(err))
 }
 
-export const getPosts = (id) => dispatch => {
+export const getPosts = () => dispatch => {
     axios
     .get(`https://backend-art.herokuapp.com/api/posts`)
     .then(res => dispatch({type: GOT_POSTS, payload: res.data}))
@@ -44,6 +44,7 @@ export const createPost = post => dispatch => {
     axios
     .post('https://backend-art.herokuapp.com/api/posts', post)
     .then(res => console.log(res))
+    .catch(err => console.log(err))
 }
 
 export const updating = formId => {

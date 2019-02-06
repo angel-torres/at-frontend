@@ -58,7 +58,6 @@ export const reducer = (state = initialState, action) => {
                 signedIn: false,
             }
         case GOT_POSTS:
-            console.log(action.payload)
             return {
                 ...state,
                 posts: [...action.payload]

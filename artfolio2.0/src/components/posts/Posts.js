@@ -22,7 +22,7 @@ class Posts extends Component {
     }
     return (
       <div className="container">
-        <h2>Hello {this.props.user.fullName}</h2>
+        <p>user: {this.props.user.username}</p>
         {
             this.props.posts.map( post => (<Post key={post.id} post={post} update={this.update} />))
         }

@@ -11,7 +11,7 @@ class Post extends Component {
             <div className="col s12">
                 <div className="card large" style={{height:"700px"}}>
                     <div className="card-image">
-                      <img alt="art" src={this.props.post.imageUrl} />
+                      <img alt="art photo" src={this.props.post.imageUrl} />
                       <span className="card-title">{this.props.post.postName}</span>
                     </div>
                     <div className="card-content">
