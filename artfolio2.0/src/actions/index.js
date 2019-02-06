@@ -41,9 +41,15 @@ export const createAccount = accountInfo => dispatch => {
 }
 
 export const createPost = post => dispatch => {
+    var token = localStorage.getItem('token')
+    var request = { 
+        headers: { 
+            authorization: token
+         }
+     }
     axios
-    .post('https://backend-art.herokuapp.com/api/posts', post)
-    .then(res => console.log(res))
+    .post(`https://backend-art.herokuapp.com/api/posts`, post, request)
+    .then(res => dispatch({type: CREATE_POST}))
     .catch(err => console.log(err))
 }
 

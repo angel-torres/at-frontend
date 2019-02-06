@@ -26,7 +26,6 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
         case SIGN_IN:
-            console.log(action.payload.data)
             return {
                 ...state,
                 user: action.payload.data,
@@ -41,7 +40,6 @@ export const reducer = (state = initialState, action) => {
         case CREATE_POST:
             return {
                 ...state,
-                posts: [...state.posts, action.payload]
             }
         case SIGN_OUT:
             return {
