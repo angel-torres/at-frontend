@@ -20,7 +20,7 @@ class App extends Component {
         <Route path="/createaccount" component={CreateAccount}/>
         <Route path="/user/:id" component={Posts}/>
         <Route path="/createpost" component={CreatePost}/>
-        <Route path="/updatepost" component={UpdatePost}/>
+        <Route path="/updatepost" component={CreatePost}/>
       </div>
     );
   }

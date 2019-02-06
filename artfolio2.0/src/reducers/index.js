@@ -20,7 +20,9 @@ const initialState = {
         fullName: '',
         email: '',
         userImgUrl: ''
-    }
+    },
+    postChanging: {},
+    postUpdating: false,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -63,13 +65,13 @@ export const reducer = (state = initialState, action) => {
         case UPDATING:
             return {
                 ...state,
-                formId: action.payload
+                postChanging: action.payload,
+                postUpdating: true,
             }
         case UPDATE_POST:
-            const updatedPost = state.posts.find( post => post.id === action.payload.id);
             return {
                 ...state,
-                posts: action.payload,
+                postUpdating: false,
             }
         default:
             return state

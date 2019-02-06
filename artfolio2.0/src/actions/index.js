@@ -41,8 +41,8 @@ export const createAccount = accountInfo => dispatch => {
 }
 
 export const createPost = post => dispatch => {
-    var token = localStorage.getItem('token')
-    var request = { 
+    const token = localStorage.getItem('token')
+    const request = { 
         headers: { 
             authorization: token
          }
@@ -53,17 +53,25 @@ export const createPost = post => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const updating = formId => {
+export const updating = post => {
     return {
         type: UPDATING,
-        payload: formId
-    }
-}
-export const updatePost = post => {
-    return {
-        type: UPDATE_POST,
         payload: post
     }
+}
+
+export const updatePost = (post, id) => dispatch => {
+    console.log(post, id)
+    const token = localStorage.getItem('token')
+    const request = { 
+        headers: { 
+            authorization: token
+         }
+     }
+    axios
+    .put(`https://backend-art.herokuapp.com/api/posts/${id}`, post, request)
+    .then(res => dispatch({type: UPDATE_POST}))
+    .catch(err => console.log(err))
 }
 
 
