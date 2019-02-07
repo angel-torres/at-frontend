@@ -8,17 +8,23 @@ class Post extends Component {
     return (
       <div>
         <div className="row">
+
             <div className="col s12">
                 <div className="card large" style={{height:"500px"}}>
                     <div className="card-image">
                       <img alt="art photo" src={this.props.post.imageUrl} />
                       <span className="card-title">{this.props.post.postName}</span>
+
                     </div>
+                    <div className="post-content">
+                    <span className="card-title">{this.props.post.title}</span>
                     <div className="card-content">
                       <span>By {this.props.user.username}</span>
                       <blockquote>{this.props.post.description}</blockquote>
+
                       <button onClick={e => this.props.update(e, this.props.post.id)} className="waves-effect waves-light btn #00695c teal darken-1">Update Post</button>
                       <button className="waves-effect waves-light btn #00695c teal darken-1"> <i className="material-icons">delete</i></button>
+
                     </div>
                 </div>
             </div>
