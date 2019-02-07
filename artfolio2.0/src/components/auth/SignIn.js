@@ -15,7 +15,6 @@ class SignIn extends Component {
     this.props.signIn(this.state);
   }
 
-
   handleChanges = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -24,7 +23,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      
+
       <form onSubmit={this.signIn} className="container card" style={{margin:"40px auto", padding:"60px"}}>
         <div className="row">
               <div className="input-field col s12">
