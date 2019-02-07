@@ -5,13 +5,14 @@ import { createAccount } from '../../actions';
 
 
 class CreateAccount extends Component {
-    state = {
-        firstName: '',  
-        lastName: '',
-        id: Date.now(),
-        password: '', // optional up to yall
-        email: '' // also optional.
-    }
+    state =   {
+        username: '',
+        password: '',
+        fullName: '',
+        email: '',
+        userImgUrl: ''
+      }
+    
 
     handleChanges = e => {
         this.setState({
@@ -20,7 +21,7 @@ class CreateAccount extends Component {
     }
     createAccount = e => {
         e.preventDefault();
-        this.props.history.push("/user/0")
+        this.props.history.push("/")
         this.props.createAccount(this.state);
     }
 
@@ -31,12 +32,24 @@ class CreateAccount extends Component {
                     <div className="row">
                         <label className="create-title">First Name</label>
                         <div className="input-field col s6">
-                        <input onChange={this.handleChanges} value={this.state.firstName} name="firstName" type="text" className="validate-create"/>
+
+                            <input onChange={this.handleChanges} value={this.state.username} name="username" type="text" className="validate"/>
+                            <label>Username</label>
+
                         </div>
 
                         <label className="create-title">Last Name</label>
                         <div className="input-field col s6">
-                        <input onChange={this.handleChanges} value={this.state.lastName} name="lastName" type="text" className="validate-create"/>
+
+                            <input onChange={this.handleChanges} value={this.state.password} name="password" type="password" className="validate"/>
+                            <label>Password</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12">
+                        <input onChange={this.handleChanges} value={this.state.fullName} name="fullName" type="text" className="validate"/>
+                        <label>Full Name</label>
+
                         </div>
                     </div>
 
@@ -50,10 +63,13 @@ class CreateAccount extends Component {
                     <div className="row">
                         <label className="create-title">Password</label>
                         <div className="input-field col s12">
-                        <input onChange={this.handleChanges} value={this.state.password} name="password" type="password" className="validate-create"/>
+
+                        <input onChange={this.handleChanges} value={this.state.userImgUrl} name="userImgUrl" type="text" className="validate"/>
+                        <label>User Image Url</label>
                         </div>
                     </div>
-                    <button class="create-account-btn">Create Account</button>
+                    <button className="waves-effect waves-light btn #00695c teal darken-3">Create Account</button>
+
                 </form>
         </div>
         )

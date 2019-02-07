@@ -8,9 +8,11 @@ class Nav extends Component {
   render() {
     return (
          <nav>
-            <div className="nav-wrapper">
-            <Link to="/" className="brand-logo">ARTFOLIO 2.0</Link>
-            {this.props.signedIn ? <UserLinks artist={this.props.artist} /> : <SignedOutLinks />}
+
+            <div className="nav-wrapper #00695c teal darken-3">
+            <Link to="/" className="brand-logo left">ArtFolio2.0</Link>
+            {this.props.signedIn ? <UserLinks user={this.props.user} /> : <SignedOutLinks />}
+
             </div>
         </nav>
     )
@@ -20,7 +22,7 @@ class Nav extends Component {
 const mapStateToProps = state => (
     {
         signedIn: state.signedIn,
-        artist: state.artist
+        user: state.user
     }
 )
 

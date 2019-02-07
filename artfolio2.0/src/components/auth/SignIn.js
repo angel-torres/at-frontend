@@ -5,15 +5,16 @@ import { signIn } from '../../actions'
 class SignIn extends Component {
 
   state = {
-    email: '',
+    username: '',
     password: '',
   }
 
   signIn = e => {
     e.preventDefault();
-    this.props.history.push("/user/0")
+    this.props.history.push(`/`)
     this.props.signIn(this.state);
   }
+
 
   handleChanges = e => {
     this.setState({
@@ -27,7 +28,10 @@ class SignIn extends Component {
         <div className="row">
               <label className="signin-text">Email</label>
               <div className="input-field col s12">
-              <input onChange={this.handleChanges} value={this.state.email} name="email" type="email" className="validate"/>
+
+              <input onChange={this.handleChanges} value={this.state.username} name="username" type="text" className="validate"/>
+              <label>Username</label>
+
               </div>
           </div>
           <div className="row">

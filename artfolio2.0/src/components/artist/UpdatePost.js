@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { updatePost } from '../../actions'
+
 class UpdatePost extends Component {
     state = {
         img: "https://loremflickr.com/320/240",
         datePosted: Date.now(),
-        title: "",
-        author: "",
-        description: "",
-        id: 0,
+        title: "Hey",
+        author: "Dr. Marsh",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut mattis ipsum. Sed metus enim, tempus a orci ut, venenatis blandit dolor. Vivamus consequat, quam id varius pellentesque, erat nisi facilisis purus, a tincidunt justo tortor ut mi. Nunc mi nisl, laoreet id libero sed, aliquam eleifend mauris. Pellentesque vel justo at purus bibendum congue. Nullam sit amet mauris enim. Nam id augue cursus, egestas augue ac, rhoncus enim. Integer rutrum tempus velit vitae feugiat. Donec tristique dolor et magna cursus posuere.",
+        id: this.props.formId,
     }
 
+    componentDidMount() {
+        const post = this.props.posts.find( post => post.id === this.state.id);
+        console.log(post)
+        this.setState({
+            img: post.img,
+            datePosted: Date.now(),
+            title: post.title,
+            author: post.author,
+            description: post.description,
+            id: this.props.formId,
+        })
+    }
 
     handleChanges = e => {
         this.setState({
@@ -18,8 +32,12 @@ class UpdatePost extends Component {
         })
     }
 
+    updatePost = e => {
+        e.preventDefault();
+        this.props.updatePost(this.state);
+    }
+
     render() {
-        console.log(this.props)
         return (
             <div className="row container card" style={{margin:"40px auto", padding:"60px"}}>
                 <form onSubmit={this.updatePost} className="col s12">
@@ -53,6 +71,7 @@ class UpdatePost extends Component {
 
 const mapStateToProps = state => ({
     posts: state.posts,
+    formId: state.formId
 })
 
-export default connect(mapStateToProps, {  } )(UpdatePost)
+export default connect(mapStateToProps, { updatePost } )(UpdatePost)

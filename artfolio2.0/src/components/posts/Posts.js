@@ -1,16 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { updating, getPosts } from '../../actions'
 import Post from './Post';
 
 class Posts extends Component {
+
+  update = (e, formId) => {
+    e.preventDefault();
+    this.props.history.push('/updatepost');
+    this.props.updating(formId);
+  }
+
+  componentDidMount() {
+    this.props.getPosts(this.props.user.id)
+  }
+
   render() {
-      console.log(this.props)
+    if (this.props.signedIn === false) {
+      this.props.history.push("/");
+    }
     return (
       <div className="container">
-        <h2>Hello {this.props.user.firstName}</h2>
+        <p>user: {this.props.user.username}</p>
         {
-            this.props.posts.map( post => (<Post post={post} />))
+            this.props.posts.map( post => (<Post key={post.id} post={post} update={this.update} />))
         }
       </div>
     )
@@ -20,8 +34,9 @@ class Posts extends Component {
 const mapPropsToState = state => {
     return {
         posts: state.posts,
-        user: state.user
+        user: state.user,
+        signedIn: state.signedIn
     }
 }
 
-export default connect(mapPropsToState, {})(Posts)
+export default connect(mapPropsToState, { updating, getPosts })(Posts)

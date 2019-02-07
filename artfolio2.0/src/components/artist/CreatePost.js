@@ -4,17 +4,14 @@ import { connect } from 'react-redux';
 
 class CreatePost extends Component {
     state = {
-        img: "https://loremflickr.com/320/240",
-        datePosted: Date.now(),
-        title: "",
-        author: this.props.user.firstName,
-        description: "",
-        id: 0,
+       postName: '',
+       imageUrl: '',
+       description: ''
     }
 
     createPost = e => {
         e.preventDefault();
-        this.props.history.push('/user/:id')
+        this.props.history.push(`/user/${this.props.user.id}`)
         this.props.createPost(this.state);
     }
 
@@ -31,7 +28,16 @@ class CreatePost extends Component {
                     <div className="row">
                         <label className="add-info">Title</label>
                         <div className="input-field col s12">
-                        <textarea onChange={this.handleChanges} value={this.state.title} name="title" className="materialize-textarea"></textarea>
+
+                        <textarea onChange={this.handleChanges} value={this.state.postName} name="postName" className="materialize-textarea"></textarea>
+                        <label>Post Name</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <textarea onChange={this.handleChanges} value={this.state.imageUrl} name="imageUrl" className="materialize-textarea"></textarea>
+                            <label>Image Url</label>
+
                         </div>
                     </div>
                     <div className="row">
@@ -40,16 +46,10 @@ class CreatePost extends Component {
                             <textarea onChange={this.handleChanges} value={this.state.description} name="description" className="description-textarea"></textarea>
                         </div>
                     </div>
-                    <div className="file-field input-field">
-                    <div className="btn">
-                        <span className="add-image">Add Image</span>
-                        <input type="file"/>
-                    </div>
-                    <div className="file-path-wrapper">
-                        <input className="file-path" type="text"/>
-                    </div>
-                    </div>
-                    <button className="create-post-btn">Create Post</button>
+
+                  
+                    <button className="waves-effect waves-light btn #00695c teal darken-3">Create Post</button>
+
                 </form>
             </div>
         )
