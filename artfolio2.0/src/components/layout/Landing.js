@@ -10,14 +10,7 @@ class Landing extends Component {
       this.props.history.push(`/user/${this.props.username}`);
     }
     return (
-      <div className="card" style={{
-        width:'50%', 
-        margin:'40px auto', 
-        height:'300px', 
-        display:'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        }}>
+      <div className="container card" style={{margin:"40px auto", padding:"60px"}}>
         <h1 className="welcome">Welcome!</h1>
         <p className="welcome-description">Show your art to the world!</p>
         <div>

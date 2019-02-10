@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { updating, getPosts } from '../../actions'
+import { updating, getPosts, deletePost } from '../../actions'
 import Post from './Post';
 
 class Posts extends Component {
 
-  update = (e, formId) => {
+  updating = (e, post) => {
     e.preventDefault();
     this.props.history.push('/updatepost');
-    this.props.updating(formId);
+    this.props.updating(post);
+  }
+
+  deletePost= (e, postId) => {
+    e.preventDefault();
+    this.props.deletePost(postId);
   }
 
   componentDidMount() {
@@ -20,11 +25,12 @@ class Posts extends Component {
     if (this.props.signedIn === false) {
       this.props.history.push("/");
     }
+    this.props.getPosts(this.props.user.id)
     return (
       <div className="container">
         <p>user: {this.props.user.username}</p>
         {
-            this.props.posts.map( post => (<Post key={post.id} post={post} update={this.update} />))
+            this.props.posts.map( post => (<Post deletePost={this.deletePost} key={post.id} post={post} updating={this.updating} />))
         }
       </div>
     )
@@ -39,4 +45,4 @@ const mapPropsToState = state => {
     }
 }
 
-export default connect(mapPropsToState, { updating, getPosts })(Posts)
+export default connect(mapPropsToState, { updating, getPosts, deletePost})(Posts)

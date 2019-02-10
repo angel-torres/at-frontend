@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { createPost } from '../../actions';
+import { createPost, updatePost } from '../../actions';
 import { connect } from 'react-redux';
 
 class CreatePost extends Component {
     state = {
-       postName: '',
-       imageUrl: '',
-       description: ''
+        postName: this.props.postUpdating ? this.props.postChanging.postName : '',
+        imageUrl: this.props.postUpdating ? this.props.postChanging.imageUrl : '',
+        description: this.props.postUpdating ? this.props.postChanging.description : '',
     }
 
     createPost = e => {
         e.preventDefault();
-        this.props.history.push(`/user/${this.props.user.id}`)
-        this.props.createPost(this.state);
+        this.props.history.push(`/user/${this.props.user.id}`);
+        if (this.props.postUpdating === true) {
+            this.props.updatePost(this.state, this.props.postChanging.id)
+        } else {
+            this.props.createPost(this.state);
+        }
     }
 
     handleChanges = e => {
@@ -20,36 +24,30 @@ class CreatePost extends Component {
             [e.target.name]: e.target.value
         })
     }
-
     render() {
         return (
-            <div className="dashboard-card">
+            <div className="row container card" style={{margin:"40px auto", padding:"60px"}}>
                 <form onSubmit={this.createPost} className="col s12">
                     <div className="row">
-                        <label className="add-info">Title</label>
                         <div className="input-field col s12">
-
-                        <textarea onChange={this.handleChanges} value={this.state.postName} name="postName" className="materialize-textarea"></textarea>
-                        <label>Post Name</label>
+                            <textarea onChange={this.handleChanges} value={this.state.postName} name="postName" className="materialize-textarea"></textarea>
+                            <label>Post Name</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <textarea onChange={this.handleChanges} value={this.state.imageUrl} name="imageUrl" className="materialize-textarea"></textarea>
                             <label>Image Url</label>
-
                         </div>
                     </div>
                     <div className="row">
-                        <div className="description">
+                        <div className="input-field col s12">
                             <label className="add-info">Description</label>
-                            <textarea onChange={this.handleChanges} value={this.state.description} name="description" className="description-textarea"></textarea>
+                            <textarea onChange={this.handleChanges} value={this.state.description} name="description" className="materialize-textarea"></textarea>
                         </div>
-                    </div>
-
-                  
-                    <button className="waves-effect waves-light btn #00695c teal darken-3">Create Post</button>
-
+                    </div>                  
+                    { this.props.postUpdating ? <button className="waves-effect waves-light btn #00695c teal darken-3">Update Post</button> 
+                    : <button className="waves-effect waves-light btn #00695c teal darken-3">Create Post</button>}
                 </form>
             </div>
         )
@@ -57,8 +55,9 @@ class CreatePost extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    postChanging: state.postChanging,
+    postUpdating: state.postUpdating,
 })
 
-
-export default connect(mapStateToProps, { createPost })(CreatePost)
+export default connect(mapStateToProps, { createPost, updatePost })(CreatePost)

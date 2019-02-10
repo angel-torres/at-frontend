@@ -27,20 +27,14 @@ class CreateAccount extends Component {
 
     render() {
         return (
-            <div className="create-account-card">
+            <div className="row container card" style={{margin:"40px auto", padding:"60px"}}>
                 <form onSubmit={this.createAccount} className="col s12">
                     <div className="row">
-                        <label className="create-title">First Name</label>
                         <div className="input-field col s6">
-
                             <input onChange={this.handleChanges} value={this.state.username} name="username" type="text" className="validate"/>
                             <label>Username</label>
-
                         </div>
-
-                        <label className="create-title">Last Name</label>
                         <div className="input-field col s6">
-
                             <input onChange={this.handleChanges} value={this.state.password} name="password" type="password" className="validate"/>
                             <label>Password</label>
                         </div>
@@ -49,23 +43,18 @@ class CreateAccount extends Component {
                         <div className="input-field col s12">
                         <input onChange={this.handleChanges} value={this.state.fullName} name="fullName" type="text" className="validate"/>
                         <label>Full Name</label>
-
                         </div>
                     </div>
-
                     <div className="row">
-                        <label className="create-title">Email</label>
                         <div className="input-field col s12">
-                        <input onChange={this.handleChanges} value={this.state.email} name="email" type="email" className="validate-create"/>
+                            <input onChange={this.handleChanges} value={this.state.email} name="email" type="email" className="validate"/>
+                            <label>Email</label>
                         </div>
                     </div>
-
                     <div className="row">
-                        <label className="create-title">Password</label>
                         <div className="input-field col s12">
-
-                        <input onChange={this.handleChanges} value={this.state.userImgUrl} name="userImgUrl" type="text" className="validate"/>
-                        <label>User Image Url</label>
+                            <input onChange={this.handleChanges} value={this.state.userImgUrl} name="userImgUrl" type="text" className="validate"/>
+                            <label>User Image Url</label>
                         </div>
                     </div>
                     <button className="waves-effect waves-light btn #00695c teal darken-3">Create Account</button>

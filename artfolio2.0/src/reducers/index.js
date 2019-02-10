@@ -5,7 +5,8 @@ import {
     SIGN_OUT, 
     UPDATING, 
     UPDATE_POST,
-    GOT_POSTS
+    GOT_POSTS,
+    DELETE_POST
 } from '../actions'
 
 const initialState = {
@@ -20,9 +21,10 @@ const initialState = {
         fullName: '',
         email: '',
         userImgUrl: ''
-    }
+    },
+    postChanging: {},
+    postUpdating: false,
 }
-
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
         case SIGN_IN:
@@ -63,13 +65,18 @@ export const reducer = (state = initialState, action) => {
         case UPDATING:
             return {
                 ...state,
-                formId: action.payload
+                postUpdating: true,
+                postChanging: action.payload
             }
         case UPDATE_POST:
             const updatedPost = state.posts.find( post => post.id === action.payload.id);
             return {
                 ...state,
                 posts: action.payload,
+            }
+        case DELETE_POST: 
+            return {
+                ...state
             }
         default:
             return state
